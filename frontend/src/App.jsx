@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import ServiciosPage from "./pages/ServiciosPage.jsx";
+import CrearCitaPage from "./pages/CrearCitaPage.jsx";
+import CitasPage from "./pages/CitasPage.jsx";
+import CrearServicioPage from "./pages/CrearServicioPage.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+const TABS = {
+  SERVICIOS: "servicios",
+  CREAR_CITA: "crear_cita",
+  CITAS: "citas",
+  CREAR_SERVICIO: "crear_servicio",
+};
+
+export default function App() {
+  const [tab, setTab] = useState(TABS.SERVICIOS);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div className="container">
+      <header className="header">
+        <h1>CanaryCode Appointments — Sprint 1</h1>
+        <p className="muted">
+          React (Vite) + Apache (proxy /api) + Spring Boot + MySQL (Docker)
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </header>
+
+      <nav className="nav">
+        <button className={tab === TABS.SERVICIOS ? "active" : ""} onClick={() => setTab(TABS.SERVICIOS)}>
+          Servicios
+        </button>
+        <button className={tab === TABS.CREAR_CITA ? "active" : ""} onClick={() => setTab(TABS.CREAR_CITA)}>
+          Crear cita
+        </button>
+        <button className={tab === TABS.CITAS ? "active" : ""} onClick={() => setTab(TABS.CITAS)}>
+          Ver citas
+        </button>
+        <button className={tab === TABS.CREAR_SERVICIO ? "active" : ""} onClick={() => setTab(TABS.CREAR_SERVICIO)}>
+          Crear servicio
+        </button>
+      </nav>
+
+      <main className="card">
+        {tab === TABS.SERVICIOS && <ServiciosPage />}
+        {tab === TABS.CREAR_CITA && <CrearCitaPage />}
+        {tab === TABS.CITAS && <CitasPage />}
+        {tab === TABS.CREAR_SERVICIO && <CrearServicioPage />}
+      </main>
+
+      <footer className="footer muted">
+        Consejo: primero crea 2–3 servicios en “Crear servicio”, luego crea una cita.
+      </footer>
+    </div>
+  );
 }
 
-export default App
+
