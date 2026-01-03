@@ -12,6 +12,9 @@ const TABS = {
   CREAR_SERVICIO: "crear_servicio",
 };
 
+// Importante llamar a la función App() para que se muestre nuestra aplicación
+App();
+
 export default function App() {
   const [tab, setTab] = useState(TABS.SERVICIOS);
 
