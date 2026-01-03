@@ -3,6 +3,7 @@ import ServiciosPage from "./pages/ServiciosPage.jsx";
 import CrearCitaPage from "./pages/CrearCitaPage.jsx";
 import CitasPage from "./pages/CitasPage.jsx";
 import CrearServicioPage from "./pages/CrearServicioPage.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TABS = {
   SERVICIOS: "servicios",
