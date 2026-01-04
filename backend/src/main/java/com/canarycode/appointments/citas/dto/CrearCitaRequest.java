@@ -4,6 +4,6 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record CrearCitaRequest(
-        @NotNull(message = "servicioId obligatorio") Long servicioId,
-        @NotNull(message = "fechaHora obligatoria") LocalDateTime fechaHora
+        @NotNull(message = "Es obligatorio indicar la Id del servicio") Long servicioId,
+        @NotNull(message = "Es obligatorio indicar la fecha y hora de la cita") LocalDateTime fechaHora
 ) {}
