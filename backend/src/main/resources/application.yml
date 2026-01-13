@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+application:
+  security:
+    jwt:
+      secret-key: rzhtf7RBgVnFfrpl0IbNvgrXnzZ5vyk7AlQaaegf4zkWzvbA4NPglstwImFnX9VDJUTJIWkeKkCxgJmd2Tmp8P
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: "appointments"
+
+# El resto de especificaciones vitales están definidas en variables de entorno creadas por docker
+
