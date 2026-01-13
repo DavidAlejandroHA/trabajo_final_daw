@@ -1,10 +1,12 @@
 package com.canarycode.appointments.citas;
 
-import com.canarycode.appointments.citas.dto.CrearCitaRequest;
-import com.canarycode.appointments.citas.dto.CitaResponse;
+import com.canarycode.appointments.dto.citas.CrearCitaRequest;
+import com.canarycode.appointments.dto.citas.CitaResponse;
 import com.canarycode.appointments.config.ApiExceptionHandler.NotFoundException;
-import com.canarycode.appointments.servicios.Servicio;
-import com.canarycode.appointments.servicios.ServicioRepository;
+import com.canarycode.appointments.model.Cita;
+import com.canarycode.appointments.model.Servicio;
+import com.canarycode.appointments.repository.CitaRepository;
+import com.canarycode.appointments.repository.ServicioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,7 +1,9 @@
 package com.canarycode.appointments.servicios;
 
-import com.canarycode.appointments.servicios.dto.CrearServicioRequest;
-import com.canarycode.appointments.servicios.dto.ServicioResponse;
+import com.canarycode.appointments.dto.servicios.CrearServicioRequest;
+import com.canarycode.appointments.dto.servicios.ServicioResponse;
+import com.canarycode.appointments.model.Servicio;
+import com.canarycode.appointments.repository.ServicioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
