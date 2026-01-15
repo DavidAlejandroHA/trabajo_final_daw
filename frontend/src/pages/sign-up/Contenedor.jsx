@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RegisterForm from "./pages/sign-up/RegisterForm.jsx";
-import LoginForm from "./pages/sign-up/LoginForm.jsx";
-import App from "./pages/index.jsx";
+import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
+import LoggedIn from "../components/LoggedIn";
 
 export default function Contenedor() {
     const [usuarios, setUsuarios] = useState([]);
@@ -42,7 +42,7 @@ export default function Contenedor() {
 
             {/* Componente Inicio Sesion Correcto (Previo Registro) */}
             {usuarioLogueado ? (
-               <App/>
+                <LoggedIn usuario={usuarioLogueado} onLogout={logout} />
             ) : (
                 <>
                     {/* Formulario de Login y Registro */}
