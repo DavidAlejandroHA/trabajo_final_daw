@@ -19,10 +19,7 @@ export default function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>CanaryCode Appointments — Sprint 1</h1>
-        <p className="muted">
-          React (Vite) + Apache (proxy /api) + Spring Boot + MySQL (Docker)
-        </p>
+        <h1>CanaryCode Appointments </h1>
       </header>
 
       <nav className="nav">
