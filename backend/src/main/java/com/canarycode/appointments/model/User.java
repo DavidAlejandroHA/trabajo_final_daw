@@ -36,6 +36,13 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Token> tokens;
 
+    public User(String username, String email, String password, List<Role> roles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
