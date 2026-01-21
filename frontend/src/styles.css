@@ -13,7 +13,6 @@ label { display: grid; gap: 6px; }
 input, select { padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
 button { padding: 10px 14px; border-radius: 8px; border: 1px solid #ccc; background: white; cursor: pointer; }
 .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.muted { color: #666; }
 .error { color: #b00020; }
 .ok { color: #0a7a2f; }
 .footer { margin-top: 12px; }

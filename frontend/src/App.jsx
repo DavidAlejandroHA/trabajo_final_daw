@@ -1,57 +1,61 @@
 import React, { useState } from "react";
-import ServiciosPage from "./pages/ServiciosPage.jsx";
-import CrearCitaPage from "./pages/CrearCitaPage.jsx";
-import CitasPage from "./pages/CitasPage.jsx";
-import CrearServicioPage from "./pages/CrearServicioPage.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import RegisterForm from "./pages/sign-up/RegisterForm.jsx";
+import LoginForm from "./pages/sign-up/LoginForm.jsx";
+import App from "./pages/index.jsx";
 
-const TABS = {
-  SERVICIOS: "servicios",
-  CREAR_CITA: "crear_cita",
-  CITAS: "citas",
-  CREAR_SERVICIO: "crear_servicio",
-};
+export default function Contenedor() {
+    const [usuarios, setUsuarios] = useState([]);
+    const [modo, setModo] = useState("login");
+    const [usuarioLogueado, setUsuarioLogueado] = useState(null);
 
+    function registerUser(nuevoUsuario) {
+        setUsuarios(prev => [...prev, nuevoUsuario]);
+        // Tras completas registro, nos redirige a Login
+        setModo("login");
+    }
 
-export default function App() {
-  const [tab, setTab] = useState(TABS.SERVICIOS);
+    function loginUser({ correo, password }) {
+        const usuario = usuarios.find(
+            u => u.correo === correo && u.password === password
+        );
 
-  return (
-    <div className="container">
-      <header className="header">
-        <h1>CanaryCode Appointments — Sprint 1</h1>
-        <p className="muted">
-          React (Vite) + Apache (proxy /api) + Spring Boot + MySQL (Docker)
-        </p>
-      </header>
+        // Alerta informando de correo o contraseña incorrectas
+        if (!usuario) {
+            alert("Credenciales incorrectas");
+            return;
+        }
+        setUsuarioLogueado(usuario);
+    }
 
-      <nav className="nav">
-        <button className={tab === TABS.SERVICIOS ? "active" : ""} onClick={() => setTab(TABS.SERVICIOS)}>
-          Servicios
-        </button>
-        <button className={tab === TABS.CREAR_CITA ? "active" : ""} onClick={() => setTab(TABS.CREAR_CITA)}>
-          Crear cita
-        </button>
-        <button className={tab === TABS.CITAS ? "active" : ""} onClick={() => setTab(TABS.CITAS)}>
-          Ver citas
-        </button>
-        <button className={tab === TABS.CREAR_SERVICIO ? "active" : ""} onClick={() => setTab(TABS.CREAR_SERVICIO)}>
-          Crear servicio
-        </button>
-      </nav>
+    function logout() {
+        setUsuarioLogueado(null);
+        setModo("login");
+    }
 
-      <main className="card">
-        {tab === TABS.SERVICIOS && <ServiciosPage />}
-        {tab === TABS.CREAR_CITA && <CrearCitaPage />}
-        {tab === TABS.CITAS && <CitasPage />}
-        {tab === TABS.CREAR_SERVICIO && <CrearServicioPage />}
-      </main>
+    function switchMode() {
+        setUsuarioLogueado(null);
+        setModo(modo === "login" ? "register" : "login");
+    }
 
-      <footer className="footer muted">
-        Consejo: primero crea 2–3 servicios en “Crear servicio”, luego crea una cita.
-      </footer>
-    </div>
-  );
+    return (
+        <div className="card">
+
+            {/* Componente Inicio Sesion Correcto (Previo Registro) */}
+            {usuarioLogueado ? (
+               <App/>
+            ) : (
+                <>
+                    {/* Formulario de Login y Registro */}
+                    {modo === "login" && <LoginForm loginUser={loginUser}/>}
+                    {modo === "register" && <RegisterForm registerUser={registerUser} />}
+
+                    {/* Cambio entre formulario de Registro y Login*/}
+                    {modo === "login" && <button type="button"
+                                                 className="link-button" onClick={switchMode}>¿No tienes cuenta? Registrate aquí</button>}
+                    {modo === "register" && <button type="button"
+                                                 className="link-button" onClick={switchMode}>¿Ya tienes cuenta? Logueate aquí</button>}
+                </>
+            )}
+        </div>
+    );
 }
-
-
