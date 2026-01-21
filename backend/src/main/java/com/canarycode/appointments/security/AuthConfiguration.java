@@ -1,7 +1,5 @@
 package com.canarycode.appointments.security;
 
-import com.canarycode.appointments.model.Role;
-import com.canarycode.appointments.model.User;
 import com.canarycode.appointments.repository.RoleRepository;
 import com.canarycode.appointments.repository.UserRepository;
 import com.canarycode.appointments.seeders.UsersAndRolesSeeder;
@@ -13,13 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
@@ -52,8 +47,9 @@ public class AuthConfiguration {
 
     @Bean
     public String seedUsersAndRoles(UserRepository userRepository,
-                                    RoleRepository roleRepository) {
-        UsersAndRolesSeeder.seedUsersAndRoles(userRepository, roleRepository);
+                                    RoleRepository roleRepository,
+                                    PasswordEncoder passwordEncoder) {
+        UsersAndRolesSeeder.seedUsersAndRoles(userRepository, roleRepository, passwordEncoder);
         return "Usuarios y roles creados";
     }
 }

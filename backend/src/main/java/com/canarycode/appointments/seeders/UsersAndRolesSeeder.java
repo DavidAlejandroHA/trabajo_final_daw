@@ -4,12 +4,13 @@ import com.canarycode.appointments.model.Role;
 import com.canarycode.appointments.model.User;
 import com.canarycode.appointments.repository.RoleRepository;
 import com.canarycode.appointments.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
 public class UsersAndRolesSeeder {
-    public static void seedUsersAndRoles(UserRepository userRepository, RoleRepository roleRepository) {
+    // Añadimos el Bean PasswordEncoder
+    public static void seedUsersAndRoles(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         // Obtener roles del repositorio de roles
         Role roleClient = roleRepository.findByName("ROLE_CLIENT");
         Role roleProfessional = roleRepository.findByName("ROLE_PROFESSIONAL");
@@ -21,12 +22,13 @@ public class UsersAndRolesSeeder {
         if (roleAdmin == null) { roleAdmin =  roleRepository.save(new Role("ROLE_ADMIN")); }
 
         // Crear usuarios basic, premium y admin
+        // Cambiamos al PasswordEncoder para que spring y JWT usen el mismo encoder. Internamente sigue usando el BCryptPasswordEncoder
         User userCliente = new User("Cliente",
-                "cliente@gmail.com",new BCryptPasswordEncoder().encode("1234"), List.of(roleClient));
+                "cliente@gmail.com",passwordEncoder.encode("1234"), List.of(roleClient));
         User userProfessional = new User("Professional",
-                "professional@gmail.com",new BCryptPasswordEncoder().encode("12345"), List.of(roleClient, roleProfessional));
+                "professional@gmail.com",passwordEncoder.encode("12345"), List.of(roleClient, roleProfessional));
         User userAdmin = new User("Admin",
-                "admin@gmail.com",new BCryptPasswordEncoder().encode("123"), List.of(roleClient, roleAdmin));
+                "admin@gmail.com",passwordEncoder.encode("123"), List.of(roleClient, roleAdmin));
 
         createUser(userCliente, userRepository);
         createUser(userProfessional, userRepository);
