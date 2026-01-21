@@ -34,4 +34,8 @@ export const api = {
   listarCitas: () => request("/api/citas"),
   crearCita: (payload) =>
     request("/api/citas", { method: "POST", body: JSON.stringify(payload) }),
+
+  loginUser: () => request("/api/auth/login"),
+    login: (payload) =>
+      request("/api/auth/login", { method: "POST", body: JSON.stringify(payload) }),
 };

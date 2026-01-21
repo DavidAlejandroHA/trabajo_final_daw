@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegisterForm from "./pages/sign-up/RegisterForm.jsx";
 import LoginForm from "./pages/sign-up/LoginForm.jsx";
 import App from "./pages/index.jsx";
+import { api } from "./api/http.js";
 
 export default function Contenedor() {
     const [usuarios, setUsuarios] = useState([]);
@@ -14,17 +15,9 @@ export default function Contenedor() {
         setModo("login");
     }
 
-    function loginUser({ correo, password }) {
-        const usuario = usuarios.find(
-            u => u.correo === correo && u.password === password
-        );
+    async function loginUser({ correo, password }) {
+        const usuario = await api.login({email: correo, password: password});
 
-        // Alerta informando de correo o contraseña incorrectas
-        if (!usuario) {
-            alert("Credenciales incorrectas");
-            return;
-        }
-        setUsuarioLogueado(usuario);
     }
 
     function logout() {
