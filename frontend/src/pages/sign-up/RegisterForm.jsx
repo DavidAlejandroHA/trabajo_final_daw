@@ -26,7 +26,7 @@ export default function RegisterForm({ registerUser }) {
         };
 
         registerUser(nuevoUsuario);
-        resetForm()
+        resetForm();
     };
 
     const resetForm = () => {
@@ -35,69 +35,75 @@ export default function RegisterForm({ registerUser }) {
         setPassword("");
         setConfirmPassword("");
         setNumero("");
-    }
+    };
 
     return (
-        <div>
+        <div className="card p-4 shadow-sm">
+            <h3 className="mb-3">Registro</h3>
+
+            {error && <p className="text-danger">{error}</p>}
+
             <form onSubmit={handleSubmit}>
-                <div className="row">
 
-                    <div className="col-12 form-input">
-                        <label>Nombre</label>
-                        <input
-                            type="text"
-                            value={nombre}
-                            onChange={(e) => setNombre(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="col-12 form-input">
-                        <label>Correo</label>
-                        <input
-                            type="email"
-                            value={correo}
-                            onChange={(e) => setCorreo(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="col-12 form-input">
-                        <label>Contraseña</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="col-12 form-input">
-                        <label>Confirmar Contraseña</label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="col-12 form-input">
-                        <label>Teléfono</label>
-                        <input
-                            type="text"
-                            value={numero}
-                            onChange={(e) => setNumero(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <br/>
-
-                    <button type="submit">Registrar</button>
+                <div className="mb-3">
+                    <label className="form-label">Nombre</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        required
+                    />
                 </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Correo</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Contraseña</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Confirmar Contraseña</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Teléfono</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={numero}
+                        onChange={(e) => setNumero(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <button type="submit" className="btn btn-success w-100">
+                    Registrar
+                </button>
             </form>
         </div>
-
     );
 }

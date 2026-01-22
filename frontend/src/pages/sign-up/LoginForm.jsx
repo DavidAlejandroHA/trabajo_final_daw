@@ -6,42 +6,41 @@ export default function LoginForm({ loginUser }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        loginUser({correo, password});
+        loginUser({ correo, password });
     };
 
     return (
-        <div>
+        <div className="card p-4 shadow-sm">
+            <h3 className="mb-3">Iniciar sesión</h3>
+
             <form onSubmit={handleSubmit}>
-                <div className="row">
 
-                    <div className="col-12 form-input">
-                        <label>Correo</label>
-                        <input
-                            type="email"
-                            value={correo}
-                            onChange={(e) => setCorreo(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="col-12 form-input">
-                        <label>Contraseña</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <br/>
-
-                    <button type="submit">Login</button>
-                    <br/>
+                <div className="mb-3">
+                    <label className="form-label">Correo</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}
+                        required
+                    />
                 </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Contraseña</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <button type="submit" className="btn btn-primary w-100">
+                    Login
+                </button>
             </form>
         </div>
-
     );
 }

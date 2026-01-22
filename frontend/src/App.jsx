@@ -37,25 +37,35 @@ export default function Contenedor() {
         setModo(modo === "login" ? "register" : "login");
     }
 
-    return (
-        <div className="card">
+  return (
+  <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#f5f5f5" }}>
+    <div className="card shadow p-4" style={{ width: "420px", borderRadius: "12px" }}>
 
-            {/* Componente Inicio Sesion Correcto (Previo Registro) */}
-            {usuarioLogueado ? (
-               <App/>
-            ) : (
-                <>
-                    {/* Formulario de Login y Registro */}
-                    {modo === "login" && <LoginForm loginUser={loginUser}/>}
-                    {modo === "register" && <RegisterForm registerUser={registerUser} />}
+      {usuarioLogueado ? (
+    <>
+      <App/>
+      <button onClick={logout} className="btn btn-warning mt-3">Cerrar sesión</button>
+    </>
+) : (
 
-                    {/* Cambio entre formulario de Registro y Login*/}
-                    {modo === "login" && <button type="button"
-                                                 className="link-button" onClick={switchMode}>¿No tienes cuenta? Registrate aquí</button>}
-                    {modo === "register" && <button type="button"
-                                                 className="link-button" onClick={switchMode}>¿Ya tienes cuenta? Logueate aquí</button>}
-                </>
-            )}
-        </div>
-    );
+        <>
+          {modo === "login" && <LoginForm loginUser={loginUser} />}
+          {modo === "register" && <RegisterForm registerUser={registerUser} />}
+
+          <button
+            type="button"
+            className="btn btn-link mt-3"
+            onClick={switchMode}
+          >
+            {modo === "login"
+              ? "¿No tienes cuenta? Regístrate aquí"
+              : "¿Ya tienes cuenta? Inicia sesión aquí"}
+          </button>
+        </>
+      )}
+
+    </div>
+  </div>
+);
+
 }

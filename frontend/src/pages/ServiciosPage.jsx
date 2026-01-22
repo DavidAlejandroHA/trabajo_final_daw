@@ -25,20 +25,24 @@ export default function ServiciosPage() {
 
   return (
     <div>
-      <div className="row">
+      <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Servicios</h2>
-        <button onClick={cargar}>Recargar</button>
+        <button className="btn btn-secondary" onClick={cargar}>
+          Recargar
+        </button>
       </div>
 
-      {loading && <p className="muted">Cargando...</p>}
-      {error && <p className="error">Error: {error}</p>}
+      {loading && <p className="text-muted">Cargando...</p>}
+      {error && <p className="text-danger">Error: {error}</p>}
 
       {!loading && !error && servicios.length === 0 && (
-        <p className="muted">No hay servicios. Crea uno en la pestaña “Crear servicio”.</p>
+        <p className="text-muted">
+          No hay servicios. Crea uno en la pestaña “Crear servicio”.
+        </p>
       )}
 
       {servicios.length > 0 && (
-        <table className="table">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>ID</th>

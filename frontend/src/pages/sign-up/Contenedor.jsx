@@ -10,7 +10,6 @@ export default function Contenedor() {
 
     function registerUser(nuevoUsuario) {
         setUsuarios(prev => [...prev, nuevoUsuario]);
-        // Tras completas registro, nos redirige a Login
         setModo("login");
     }
 
@@ -19,7 +18,6 @@ export default function Contenedor() {
             u => u.correo === correo && u.password === password
         );
 
-        // Alerta informando de correo o contraseña incorrectas
         if (!usuario) {
             alert("Credenciales incorrectas");
             return;
@@ -38,24 +36,28 @@ export default function Contenedor() {
     }
 
     return (
-        <div className="card">
+        <div className="container mt-4">
+            <div className="card p-4 shadow-sm">
 
-            {/* Componente Inicio Sesion Correcto (Previo Registro) */}
-            {usuarioLogueado ? (
-                <LoggedIn usuario={usuarioLogueado} onLogout={logout} />
-            ) : (
-                <>
-                    {/* Formulario de Login y Registro */}
-                    {modo === "login" && <LoginForm loginUser={loginUser}/>}
-                    {modo === "register" && <RegisterForm registerUser={registerUser} />}
+                {usuarioLogueado ? (
+                    <LoggedIn usuario={usuarioLogueado} onLogout={logout} />
+                ) : (
+                    <>
+                        {modo === "login" && <LoginForm loginUser={loginUser} />}
+                        {modo === "register" && <RegisterForm registerUser={registerUser} />}
 
-                    {/* Cambio entre formulario de Registro y Login*/}
-                    {modo === "login" && <button type="button"
-                                                 className="link-button" onClick={switchMode}>¿No tienes cuenta? Registrate aquí</button>}
-                    {modo === "register" && <button type="button"
-                                                 className="link-button" onClick={switchMode}>¿Ya tienes cuenta? Logueate aquí</button>}
-                </>
-            )}
+                        <button
+                            type="button"
+                            className="btn btn-link mt-3"
+                            onClick={switchMode}
+                        >
+                            {modo === "login"
+                                ? "¿No tienes cuenta? Regístrate aquí"
+                                : "¿Ya tienes cuenta? Inicia sesión aquí"}
+                        </button>
+                    </>
+                )}
+            </div>
         </div>
     );
 }
