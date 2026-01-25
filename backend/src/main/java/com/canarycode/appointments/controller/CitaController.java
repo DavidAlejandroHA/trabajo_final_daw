@@ -1,6 +1,6 @@
 package com.canarycode.appointments.controller;
 
-import com.canarycode.appointments.citas.CitaService;
+import com.canarycode.appointments.servicios.CitaService;
 import com.canarycode.appointments.dto.citas.CrearCitaRequest;
 import com.canarycode.appointments.dto.citas.CitaResponse;
 import jakarta.validation.Valid;
